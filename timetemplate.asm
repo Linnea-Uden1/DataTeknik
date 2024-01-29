@@ -78,7 +78,7 @@ tiend:	sw	$t0,0($a0)	# save updated result
 hexasc:
 	andi $v0, $a0, 0xf
 	addi $v0, $v0, 0x30
-	slti $v1, $v0, 0x39
+	slti $v1, $v0, 0x40
 	beq $v1, 1, L2
 	addi $v0, $v0, 7
 	
@@ -104,18 +104,18 @@ time2string:
 	srl $a0, $a0, 12
 	jal hexasc
 	nop
-	sb $v0, 5($s0)
+	sb $v0, 0($s0)
 	
 	# 3 digit
 	andi $a0, $s1, 0xF00
 	srl $a0, $a0, 8
 	jal hexasc
 	nop
-	sb $v0, 4($s0)
+	sb $v0, 1($s0)
 	
 	#Colon
 	li $v0, 0x3A
-	sb $v0, 3($s0)
+	sb $v0, 2($s0)
 	
 	
 	#2 digit
@@ -123,18 +123,18 @@ time2string:
 	srl $a0, $a0, 4
 	jal hexasc
 	nop
-	sb $v0, 2($s0)
+	sb $v0, 3($s0)
 	
 	#1 digit
 	andi $a0, $s1, 0xF
 	srl $a0, $a0, 0
 	jal hexasc
 	nop
-	sb $v0, 1($s0)
+	sb $v0, 4($s0)
 	
 	#null
 	li $v0, 0x00
-	sb $v0, 0($s0)
+	sb $v0, 5($s0)
 	
 	POP	($s1)
 	POP	($s0)
