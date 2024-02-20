@@ -1,0 +1,5 @@
+. /opt/mcb32tools/enviorment
+
+make
+
+make install TTYDEV=/dev/ttyS5
